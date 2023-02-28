@@ -37,6 +37,12 @@
 		6F04099529A69BDE006CBE9E /* ExhibitionInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F04099429A69BDE006CBE9E /* ExhibitionInfo.swift */; };
 		6F04099729A69C40006CBE9E /* ArtistInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F04099629A69C40006CBE9E /* ArtistInfo.swift */; };
 		6F0E178F29A5636E0062C280 /* exhibitionData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6F0E178E29A5636E0062C280 /* exhibitionData.json */; };
+		6F8F5D4629AB54DE009807B8 /* HomeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F5D4529AB54DE009807B8 /* HomeAPI.swift */; };
+		6F8F5D4829AB5984009807B8 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F5D4729AB5984009807B8 /* Request.swift */; };
+		6F8F5D4A29AB5EE4009807B8 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F5D4929AB5EE4009807B8 /* UserProfile.swift */; };
+		6F8F5D4C29AB60F6009807B8 /* ProfileAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F5D4B29AB60F6009807B8 /* ProfileAPI.swift */; };
+		6F8F5D4F29AB6526009807B8 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 6F8F5D4E29AB6526009807B8 /* Alamofire */; };
+		6F8F5DA329AE10B5009807B8 /* SearchAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F8F5DA229AE10B5009807B8 /* SearchAPI.swift */; };
 		6FB6F41E29A49DC10077C1BD /* MainHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB6F41D29A49DC10077C1BD /* MainHome.swift */; };
 		6FB6F42129A4AC160077C1BD /* ExhibitionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB6F42029A4AC160077C1BD /* ExhibitionRow.swift */; };
 		6FB6F42329A4ACC40077C1BD /* ExhibitionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB6F42229A4ACC40077C1BD /* ExhibitionItem.swift */; };
@@ -76,6 +82,11 @@
 		6F04099629A69C40006CBE9E /* ArtistInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArtistInfo.swift; sourceTree = "<group>"; };
 		6F0E178B29A539600062C280 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6F0E178E29A5636E0062C280 /* exhibitionData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = exhibitionData.json; sourceTree = "<group>"; };
+		6F8F5D4529AB54DE009807B8 /* HomeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPI.swift; sourceTree = "<group>"; };
+		6F8F5D4729AB5984009807B8 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		6F8F5D4929AB5EE4009807B8 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
+		6F8F5D4B29AB60F6009807B8 /* ProfileAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileAPI.swift; sourceTree = "<group>"; };
+		6F8F5DA229AE10B5009807B8 /* SearchAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchAPI.swift; sourceTree = "<group>"; };
 		6FB6F41D29A49DC10077C1BD /* MainHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainHome.swift; sourceTree = "<group>"; };
 		6FB6F42029A4AC160077C1BD /* ExhibitionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionRow.swift; sourceTree = "<group>"; };
 		6FB6F42229A4ACC40077C1BD /* ExhibitionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExhibitionItem.swift; sourceTree = "<group>"; };
@@ -87,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F8F5D4F29AB6526009807B8 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,11 +184,13 @@
 		13FD22F629A0F2BC0055013E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6F8F5D4429AB5490009807B8 /* API */,
 				133DE2EA29A673C700AFAD29 /* ExhibitionData.swift */,
 				13FD22F729A0F2CB0055013E /* Model.swift */,
 				13CEFBC729A7A27C009B99EA /* User.swift */,
 				6F0E178E29A5636E0062C280 /* exhibitionData.json */,
 				133EBBD329AB4CCD00DAB0AE /* Response.swift */,
+				6F8F5D4729AB5984009807B8 /* Request.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -220,6 +234,16 @@
 			path = JH_Component;
 			sourceTree = "<group>";
 		};
+		6F8F5D4429AB5490009807B8 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				6F8F5D4529AB54DE009807B8 /* HomeAPI.swift */,
+				6F8F5D4B29AB60F6009807B8 /* ProfileAPI.swift */,
+				6F8F5DA229AE10B5009807B8 /* SearchAPI.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		6FB6F41C29A49DB70077C1BD /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -227,6 +251,7 @@
 				6FB6F42029A4AC160077C1BD /* ExhibitionRow.swift */,
 				6FB6F42229A4ACC40077C1BD /* ExhibitionItem.swift */,
 				6FB6F42429A4BEC00077C1BD /* CustomNavBarView.swift */,
+				6F8F5D4929AB5EE4009807B8 /* UserProfile.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -247,6 +272,9 @@
 			dependencies = (
 			);
 			name = PhotoCarpet;
+			packageProductDependencies = (
+				6F8F5D4E29AB6526009807B8 /* Alamofire */,
+			);
 			productName = PhotoCarpet;
 			productReference = 13E938F529A0D92400A6CA0B /* PhotoCarpet.app */;
 			productType = "com.apple.product-type.application";
@@ -275,6 +303,9 @@
 				Base,
 			);
 			mainGroup = 13E938EC29A0D92400A6CA0B;
+			packageReferences = (
+				6F8F5D4D29AB6526009807B8 /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			productRefGroup = 13E938F629A0D92400A6CA0B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -309,23 +340,28 @@
 				133DE2E429A60D8900AFAD29 /* Tag.swift in Sources */,
 				13E938FB29A0D92400A6CA0B /* ContentView.swift in Sources */,
 				13EBBA2629A536350079CC52 /* CustomTextField.swift in Sources */,
+				6F8F5D4629AB54DE009807B8 /* HomeAPI.swift in Sources */,
 				1340019A29A7BB9500595EF1 /* BuyModal.swift in Sources */,
 				13EBBA1E29A51C600079CC52 /* EnrollView.swift in Sources */,
 				1340019829A7B86400595EF1 /* Like.swift in Sources */,
 				133DE2E729A61C2C00AFAD29 /* PhotoDisplayView.swift in Sources */,
 				13EBBA2029A523100079CC52 /* ImageSelector.swift in Sources */,
 				1344F1C229A5EB8300FD3FA3 /* ExhibitionDetailView.swift in Sources */,
+				6F8F5DA329AE10B5009807B8 /* SearchAPI.swift in Sources */,
 				13E938F929A0D92400A6CA0B /* PhotoCarpetApp.swift in Sources */,
 				131A392B29A8C48600DFC279 /* Alert.swift in Sources */,
 				13EBBA2829A5D56F0079CC52 /* ExhibitionMainView.swift in Sources */,
 				6F04098529A686C0006CBE9E /* SearchHome.swift in Sources */,
 				13FD22F829A0F2CB0055013E /* Model.swift in Sources */,
 				6F04098329A686A4006CBE9E /* ArtistItem.swift in Sources */,
+				6F8F5D4C29AB60F6009807B8 /* ProfileAPI.swift in Sources */,
 				6F04099029A69AD8006CBE9E /* LikePhoto.swift in Sources */,
 				133EBBD429AB4CCD00DAB0AE /* Response.swift in Sources */,
+				6F8F5D4A29AB5EE4009807B8 /* UserProfile.swift in Sources */,
 				6FB6F42129A4AC160077C1BD /* ExhibitionRow.swift in Sources */,
 				13E938FB29A0D92400A6CA0B /* ContentView.swift in Sources */,
 				6F04098E29A6960F006CBE9E /* LikeHome.swift in Sources */,
+				6F8F5D4829AB5984009807B8 /* Request.swift in Sources */,
 				13E938F929A0D92400A6CA0B /* PhotoCarpetApp.swift in Sources */,
 				6F04099729A69C40006CBE9E /* ArtistInfo.swift in Sources */,
 				6FB6F42529A4BEC00077C1BD /* CustomNavBarView.swift in Sources */,
@@ -467,7 +503,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCarpet/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -497,7 +532,6 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PhotoCarpet/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
@@ -538,6 +572,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		6F8F5D4D29AB6526009807B8 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6F8F5D4E29AB6526009807B8 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 6F8F5D4D29AB6526009807B8 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 13E938ED29A0D92400A6CA0B /* Project object */;
 }

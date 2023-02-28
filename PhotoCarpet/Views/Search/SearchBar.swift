@@ -8,10 +8,13 @@
 import SwiftUI
 
 struct SearchBar: View {
+    @EnvironmentObject var searchVM: SearchViewModel
     @Binding var searchWord: String
+    @Binding var searchType: SearchType
 
-    init(searchWord: Binding<String> = .constant("")) {
+    init(searchWord: Binding<String> = .constant(""), searchType: Binding<SearchType> = .constant(.artist)) {
         _searchWord = searchWord
+        _searchType = searchType
     }
 
     var body: some View {
@@ -23,7 +26,12 @@ struct SearchBar: View {
                 .font(.system(size: 13))
                 .onSubmit {
                     if searchWord.count > 0 {
-                        print("네트워크 get 요청하면 된다")
+                        // TODO: 네트워크 get 요청
+                        if searchType == .exhibition {
+                            searchVM.fetchSearch(Response.Exhibition.self, searchType, searchWord)
+                        } else {
+                            searchVM.fetchSearch(Response.Artist.self, searchType, searchWord)
+                        }
                     }
                 }
 

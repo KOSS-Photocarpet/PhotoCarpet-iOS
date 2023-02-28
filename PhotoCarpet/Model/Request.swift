@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Request: Codable {
+    static let baseURL = "http://localhost:8080"
+    static let dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSX"
+}

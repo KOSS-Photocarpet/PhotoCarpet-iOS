@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import SwiftUI
 
 final class User {
-    static let shared: User = User()
-    private init() {}
-    
-    let userId: Int = 0
+    static let shared: User = .init()
+//    private init() {}
+    public init() {}
+
+    let userId: Int = 2
+    let nickName: String = "tester2"
     var point: Int = 1500
+    var profileurl: String?
+    var email: String?
 }

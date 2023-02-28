@@ -20,13 +20,13 @@ struct Response: Codable {
         let likeCount: Int?
         let exhibitionDate: Date?
         let thumbUrl: String?
-        let user: User
+        let user: User?
         let moodContents: [String]?
     }
 
     struct Artist: Codable {
         let userId: Int
-        let nickName: String?
+        let nickname: String?
         let profileMessage: String?
         let profileUrl: String?
         let exhibitions: [Exhibition]?
@@ -37,8 +37,8 @@ struct Response: Codable {
         let nickname: String?
         let email: String
         let profileUrl: String?
-        let jwtToken: String
-        let accessToken: String
+        let jwtToken: String?
+        let accessToken: String?
         let profileMessage: String?
         let validate_check: Bool?
     }

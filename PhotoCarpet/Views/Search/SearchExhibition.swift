@@ -8,28 +8,23 @@
 import SwiftUI
 
 struct SearchExhibition: View {
-    @EnvironmentObject var exhibitionData: ExhibitionData
-    @State private var offset: Int = 0
-    @State private var limit: Int = 9
+    @EnvironmentObject var searchVM: SearchViewModel
     
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-
+    
+    
     var body: some View {
-        ScrollView {
+        let exhibitions = searchVM.exhibitions
+        return ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(0 ... (offset + 1) * 10, id: \.self) { index in
+                ForEach(exhibitions.indices, id: \.self) { index in
                     NavigationLink {
                         ExhibitionMainView()
                             .onAppear {
-                                exhibitionData.setDummyData()
+                                // TODO:
                             }
                     } label: {
                         ExhibitionItem()
-                            .onAppear {
-                                if index % (limit + 1) == limit {
-                                    offset += 1
-                                }
-                            }
                             .padding(.vertical, 10)
                     }
                 }

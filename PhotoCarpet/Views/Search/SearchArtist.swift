@@ -8,25 +8,22 @@
 import SwiftUI
 
 struct SearchArtist: View {
-    @State private var offset: Int = 0
-    @State private var limit: Int = 9
-    
-    
-    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+    @EnvironmentObject var searchVM: SearchViewModel
 
+    var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 1)
+    
     var body: some View {
-        ScrollView {
+        let artists = searchVM.artists
+        return ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
-                ForEach(0 ... (offset + 1) * 10, id: \.self) { index in
+                ForEach(artists.indices, id: \.self) { index in
                     NavigationLink {
                         Text("정환이형 프로필 관리 페이지")
                     } label: {
-                        ArtistItem(profileMessage: "프로필 메세지 \(index)")
-                            .onAppear {
-                                if index % (limit + 1) == limit {
-                                    offset += 1
-                                }
-                            }
+//                        ArtistItem(profileMessage: .constant(artist.profileMessage), nickName: .constant(artist.nickname), profileURL: .constant(artist.profileUrl))
+
+//                        ArtistItem(profileMessage: artist.profileMessage, nickName: artist.nickname, profileURL: artist.profileUrl)
+                        ArtistItem(profileMessage: artists[index].profileMessage, nickName: artists[index].nickname, profileURL: artists[index].profileUrl)
                     }
                 }
             }

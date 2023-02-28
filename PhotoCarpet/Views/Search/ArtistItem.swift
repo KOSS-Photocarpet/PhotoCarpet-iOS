@@ -8,25 +8,59 @@
 import SwiftUI
 
 struct ArtistItem: View {
-    var profileMessage: String
+//    @Binding var profileMessage: String?
+//    @Binding var nickName: String?
+//    @Binding var profileURL: String?
+    
+    var profileMessage: String?
+    var nickName: String?
+    var profileURL: String?
 
-    init(profileMessage: String) {
+//    init(profileMessage: Binding<String?>, nickName: Binding<String?> ,profileURL: Binding<String?>) {
+//        _profileMessage = profileMessage
+//        _nickName = nickName
+//        _profileURL = profileURL
+//    }
+    
+    init(profileMessage: String?, nickName: String? ,profileURL: String?) {
         self.profileMessage = profileMessage
+        self.nickName = nickName
+        self.profileURL = profileURL
     }
 
     var body: some View {
         HStack(alignment: .top, spacing: 10) {
-            Image("artist")
-                .renderingMode(.original)
-                .resizable()
-                .frame(width: 60, height: 60)
-                .clipShape(Circle())
-                .padding(.vertical, 20)
+            if let profileUrl = profileURL {
+                AsyncImage(url: URL(string: profileUrl)) { phase in
+                    switch phase {
+                    case .success(let image):
+                        image
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            .padding(.vertical, 20)
+                    case .empty:
+                        ProgressView()
+                    case .failure:
+                        Image(systemName: "wifi.slash")
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+            } else {
+                Image(systemName: "person.crop.circle.fill")
+                    .renderingMode(.original)
+                    .resizable()
+                    .frame(width: 60, height: 60)
+                    .clipShape(Circle())
+                    .padding(.vertical, 20)
+            }
 
             VStack(alignment: .leading, spacing: 5) {
-                Text("아티스트 이름")
+                Text(nickName ?? "Anonymous")
                     .font(.system(size: 14, weight: .semibold))
-                Text(profileMessage)
+                Text(profileMessage ?? "")
                     .font(.system(size: 12, weight: .light))
             }
             .padding(.top, 20)
@@ -46,10 +80,9 @@ struct ArtistItem: View {
 struct ArtistItem_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 10) {
-            ArtistItem(profileMessage: "Id voluptas voluptatem possimus rerum voluptate est distinctio suscipit dolorem.")
-            ArtistItem(profileMessage: "Sed voluptatum optio et est voluptas maiores mollitia aut sed.")
-            ArtistItem(profileMessage: "Ut expedita enim velit omnis.")
-            ArtistItem(profileMessage: "Autem eos maxime quaerat.")
+//            ArtistItem(profileMessage: .constant("Id voluptas voluptatem possimus rerum voluptate est distinctio suscipit dolorem."), nickName: .constant("아티스트 이름"), profileURL: .constant("https://cdn-icons-png.flaticon.com/512/1361/1361876.png"))
+            
+            ArtistItem(profileMessage: "Id voluptas voluptatem possimus rerum voluptate est distinctio suscipit dolorem.", nickName: "아티스트 이름", profileURL:  "https://cdn-icons-png.flaticon.com/512/1361/1361876.png")
         }
     }
 }

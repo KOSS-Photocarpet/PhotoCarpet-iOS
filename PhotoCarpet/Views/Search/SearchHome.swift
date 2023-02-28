@@ -10,37 +10,36 @@ import SwiftUI
 struct SearchHome: View {
     @Environment(\.presentationMode) var presentation
 
+    @StateObject private var searchVM = SearchViewModel()
+
     @State var searchWord: String = ""
-    @State var isExActive: Bool = false // 전시회 검색인지 확인
+    @State var searchType: SearchType = .artist // 전시회 검색인지 확인
 
     var body: some View {
         VStack(alignment: .center, spacing: 40) {
-            SearchBar(searchWord: $searchWord)
+            SearchBar(searchWord: $searchWord, searchType: $searchType)
+                .environmentObject(searchVM)
 
             HStack {
                 Button {
-                    if isExActive {
-                        isExActive.toggle()
-                    }
+                    searchType = .artist
                 } label: {
                     Text("Artists")
-                        .fontWeight(!isExActive ? .bold : .regular)
+                        .fontWeight(searchType == .artist ? .bold : .regular)
                 }
 
                 Spacer()
 
                 Button {
-                    if !isExActive {
-                        isExActive.toggle()
-                    }
+                    searchType = .exhibition
                 } label: {
                     Text("Exhibitions")
-                        .fontWeight(isExActive ? .bold : .regular)
+                        .fontWeight(searchType == .exhibition ? .bold : .regular)
                 }
             }
             .frame(width: 200)
 
-            isExActive ? AnyView(SearchExhibition()) : AnyView(SearchArtist())
+            searchType == .exhibition ? AnyView(SearchExhibition().environmentObject(searchVM)) : AnyView(SearchArtist().environmentObject(searchVM))
         }
         .padding(.top, 20)
 

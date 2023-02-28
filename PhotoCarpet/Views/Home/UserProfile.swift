@@ -8,8 +8,29 @@
 import SwiftUI
 
 struct UserProfile: View {
+    @StateObject var viewModel = UserViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            if let profileUrl = self.viewModel.user.profileUrl {
+                AsyncImage(url: URL(string: profileUrl))
+            } else {
+                Image("person")
+            }
+
+            Text(self.viewModel.user.email)
+
+            Text(String(User.shared.point))
+
+            NavigationLink {
+                LikeHome()
+            } label: {
+                Text("찜 목록 가기")
+            }
+        }
+        .task {
+            self.viewModel.fetchData()
+        }
     }
 }
 

@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct CustomNavBarView: View {
+    @StateObject private var userViewModel = UserViewModel()
+
     var body: some View {
         HStack {
             Text("PhotoCarpet")
                 .fontWeight(.semibold)
-            
+
             Spacer()
-            
+
             NavigationLink {
                 SearchHome()
             } label: {
                 Image(systemName: "magnifyingglass")
             }
-            
+
             NavigationLink {
-                Text("정환이형이 만든 프로필 화면")
+                UserProfile()
             } label: {
                 Image(systemName: "person.fill")
             }
-            
+
             NavigationLink {
                 LikeHome()
             } label: {
