@@ -14,7 +14,7 @@ struct Response: Codable {
             let profilUrl: String?
         }
 
-        let exhibitId: Int
+        let exhibitId: Int?
         let title: String?
         let content: String?
         let likeCount: Int?
