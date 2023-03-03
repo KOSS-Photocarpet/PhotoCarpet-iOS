@@ -9,21 +9,21 @@ import Alamofire
 import Foundation
 
 class UserViewModel: ObservableObject {
-    struct User: Identifiable {
-        internal init(id: Int, email: String, profileUrl: String? = nil) {
-            self.id = id
-            self.email = email
-            self.profileUrl = profileUrl
-        }
+//    struct User: Identifiable {
+//        internal init(id: Int, email: String, profileUrl: String? = nil) {
+//            self.id = id
+//            self.email = email
+//            self.profileUrl = profileUrl
+//        }
+//
+//        init() { self.id = 0; self.email = ""; self.profileUrl = nil }
+//
+//        let id: Int
+//        let email: String
+//        let profileUrl: String?
+//    }
 
-        init() { self.id = 0; self.email = ""; self.profileUrl = nil }
-
-        let id: Int
-        let email: String
-        let profileUrl: String?
-    }
-
-    @Published var user: UserViewModel.User = .init()
+    @Published var user: Response.SocialUser?
 
     func fetchData() {
         let url = "\(Request.baseURL)/user"
@@ -38,7 +38,7 @@ class UserViewModel: ObservableObject {
             .responseDecodable(of: Response.SocialUser.self) { response in
                 do {
                     let result = try response.result.get()
-                    self.user = UserViewModel.User(id: result.userId, email: result.email, profileUrl: result.profileUrl)
+                    self.user = result
                 } catch {
                     print(error.localizedDescription)
                 }
