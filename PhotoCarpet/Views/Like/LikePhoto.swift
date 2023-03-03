@@ -8,16 +8,25 @@
 import SwiftUI
 
 struct LikePhoto: View {
+    var listOfLikes: [Int: (Response.Photo, Response.Exhibition)]
+
+    init(likes: [Int: (Response.Photo, Response.Exhibition)]) {
+        self.listOfLikes = likes
+    }
+
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
 
     var body: some View {
         ScrollView {
             LazyVGrid(columns: columns) {
-                ForEach(0 ... 19, id: \.self) { _ in
+                ForEach(listOfLikes.keys.sorted(by: <), id: \.self) { key in
                     NavigationLink {
-                        Text("정민이가 만든 전시회 화면")
+                        // TODO: Response.Exhibition type의 데이터 파라미터로 넘겨주기
+                        ExhibitionMainView()
                     } label: {
-                        PhotoItem()
+                        PhotoItem(photoUrl: listOfLikes[key]?.0.artUrl,
+                                  artistProfileUrl: listOfLikes[key]?.1.user?.profilUrl,
+                                  artistName: listOfLikes[key]?.1.user?.nickName)
                             .padding(.vertical, 10)
                     }
                 }
@@ -30,6 +39,6 @@ struct LikePhoto: View {
 
 struct LikePhoto_Previews: PreviewProvider {
     static var previews: some View {
-        LikePhoto()
+        LikePhoto(likes: [:])
     }
 }

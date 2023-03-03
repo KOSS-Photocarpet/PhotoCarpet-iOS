@@ -12,13 +12,13 @@ struct ExhibitionDetailView: View {
     @EnvironmentObject var exhibitionData: ExhibitionData
 //    @Binding var profileImage: Image?
 //    @Binding var userName: String
-    
+
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .center) {
                 Text(exhibitionData.title)
                     .font(.system(size: 35, weight: .bold))
-                    .frame(maxWidth: .infinity,alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 Spacer()
                 Like(isLiked: $exhibitionData.isLiked) {}
             }
@@ -26,7 +26,7 @@ struct ExhibitionDetailView: View {
                 Circle()
                     .frame(width: 40, height: 40)
                     .foregroundColor(Color(0xf5f5f5))
-                
+
                 Text("User Name")
             }
             ScrollView(.horizontal, showsIndicators: false) {

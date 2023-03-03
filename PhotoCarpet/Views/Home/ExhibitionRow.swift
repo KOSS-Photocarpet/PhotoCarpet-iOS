@@ -26,11 +26,8 @@ struct ExhibitionRow: View {
                                 exhibitionData.setDummyData()
                             }
                     } label: {
-                        ExhibitionItem()
+                        ExhibitionItem(thumbUrl: "https://photocarpet.s3.ap-northeast-2.amazonaws.com/cff40774-5388-44a0-a395-5bef737d20f2-3425899%20bytes.jpeg", nickName: "tester1", profileURL: "https://randomuser.me/api/portraits/men/18.jpg", title: "Exhibition1")
                     }
-                    ExhibitionItem()
-                    ExhibitionItem()
-                    ExhibitionItem()
                 }
                 .padding(.leading, 15)
             }

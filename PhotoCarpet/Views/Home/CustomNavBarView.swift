@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CustomNavBarView: View {
-    @StateObject private var userViewModel = UserViewModel()
-
     var body: some View {
         HStack {
             Text("PhotoCarpet")

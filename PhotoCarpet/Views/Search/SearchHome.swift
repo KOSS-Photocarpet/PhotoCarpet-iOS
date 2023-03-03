@@ -12,12 +12,11 @@ struct SearchHome: View {
 
     @StateObject private var searchVM = SearchViewModel()
 
-    @State var searchWord: String = ""
-    @State var searchType: SearchType = .artist // 전시회 검색인지 확인
+    @State var searchType: SearchType = .artist
 
     var body: some View {
         VStack(alignment: .center, spacing: 40) {
-            SearchBar(searchWord: $searchWord, searchType: $searchType)
+            SearchBar(searchType: $searchType)
                 .environmentObject(searchVM)
 
             HStack {
@@ -39,7 +38,7 @@ struct SearchHome: View {
             }
             .frame(width: 200)
 
-            searchType == .exhibition ? AnyView(SearchExhibition().environmentObject(searchVM)) : AnyView(SearchArtist().environmentObject(searchVM))
+            searchType == .exhibition ? AnyView(SearchExhibition(exhibitions: searchVM.exhibitions)) : AnyView(SearchArtist(artists: searchVM.artists))
         }
         .padding(.top, 20)
 

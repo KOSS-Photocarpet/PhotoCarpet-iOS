@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct SearchExhibition: View {
-    @EnvironmentObject var searchVM: SearchViewModel
-    
+    @EnvironmentObject var exhibitionData: ExhibitionData
+
+    var exhibitions: [Response.Exhibition]
+
+    init(exhibitions: [Response.Exhibition]) {
+        self.exhibitions = exhibitions
+    }
+
     var columns: [GridItem] = Array(repeating: .init(.flexible()), count: 2)
-    
-    
+
     var body: some View {
-        let exhibitions = searchVM.exhibitions
-        return ScrollView {
+        ScrollView {
             LazyVGrid(columns: columns) {
                 ForEach(exhibitions.indices, id: \.self) { index in
                     NavigationLink {
+                        // TODO: 
                         ExhibitionMainView()
-                            .onAppear {
-                                // TODO:
-                            }
                     } label: {
-                        ExhibitionItem()
+                        ExhibitionItem(thumbUrl: exhibitions[index].thumbUrl, nickName: exhibitions[index].user?.nickName, profileURL: exhibitions[index].user?.profilUrl, title: exhibitions[index].title)
                             .padding(.vertical, 10)
                     }
                 }
@@ -37,7 +39,7 @@ struct SearchExhibition: View {
 
 struct SearchExhibition_Previews: PreviewProvider {
     static var previews: some View {
-        SearchExhibition()
+        SearchExhibition(exhibitions: [])
             .environmentObject(ExhibitionData())
     }
 }

@@ -8,21 +8,11 @@
 import SwiftUI
 
 struct ArtistItem: View {
-//    @Binding var profileMessage: String?
-//    @Binding var nickName: String?
-//    @Binding var profileURL: String?
-    
     var profileMessage: String?
     var nickName: String?
     var profileURL: String?
 
-//    init(profileMessage: Binding<String?>, nickName: Binding<String?> ,profileURL: Binding<String?>) {
-//        _profileMessage = profileMessage
-//        _nickName = nickName
-//        _profileURL = profileURL
-//    }
-    
-    init(profileMessage: String?, nickName: String? ,profileURL: String?) {
+    init(profileMessage: String?, nickName: String?, profileURL: String?) {
         self.profileMessage = profileMessage
         self.nickName = nickName
         self.profileURL = profileURL
@@ -81,8 +71,8 @@ struct ArtistItem_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 10) {
 //            ArtistItem(profileMessage: .constant("Id voluptas voluptatem possimus rerum voluptate est distinctio suscipit dolorem."), nickName: .constant("아티스트 이름"), profileURL: .constant("https://cdn-icons-png.flaticon.com/512/1361/1361876.png"))
-            
-            ArtistItem(profileMessage: "Id voluptas voluptatem possimus rerum voluptate est distinctio suscipit dolorem.", nickName: "아티스트 이름", profileURL:  "https://cdn-icons-png.flaticon.com/512/1361/1361876.png")
+
+            ArtistItem(profileMessage: "Id voluptas voluptatem possimus rerum voluptate est distinctio suscipit dolorem.", nickName: "아티스트 이름", profileURL: "https://cdn-icons-png.flaticon.com/512/1361/1361876.png")
         }
     }
 }

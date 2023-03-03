@@ -9,16 +9,16 @@ import SwiftUI
 
 struct UserProfile: View {
     @StateObject var viewModel = UserViewModel()
-    
+
     var body: some View {
         VStack {
-            if let profileUrl = self.viewModel.user.profileUrl {
+            if let user = viewModel.user, let profileUrl = user.profileUrl {
                 AsyncImage(url: URL(string: profileUrl))
+                Text(user.email)
             } else {
                 Image("person")
+                Text("anonymous")
             }
-
-            Text(self.viewModel.user.email)
 
             Text(String(User.shared.point))
 

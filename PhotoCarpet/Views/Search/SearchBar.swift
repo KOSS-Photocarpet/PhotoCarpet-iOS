@@ -9,11 +9,11 @@ import SwiftUI
 
 struct SearchBar: View {
     @EnvironmentObject var searchVM: SearchViewModel
-    @Binding var searchWord: String
-    @Binding var searchType: SearchType
 
-    init(searchWord: Binding<String> = .constant(""), searchType: Binding<SearchType> = .constant(.artist)) {
-        _searchWord = searchWord
+    @State var searchWord: String = ""
+    @Binding var searchType: SearchType
+    
+    init(searchType: Binding<SearchType> = .constant(.artist)) {
         _searchType = searchType
     }
 

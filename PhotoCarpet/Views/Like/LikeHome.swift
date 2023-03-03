@@ -10,34 +10,37 @@ import SwiftUI
 struct LikeHome: View {
     @Environment(\.dismiss) private var dismissAction
 
-    @State var isExActive: Bool = false // 전시회 검색인지 확인
+    @State var category: Category = .photo // 전시회 검색인지 확인
+
+    // TODO: 좋아요 viewModel 만들기
+    @ObservedObject private var likeVM = LikeViewModel()
 
     var body: some View {
         VStack(alignment: .center, spacing: 40) {
             HStack {
                 Button {
-                    if isExActive {
-                        isExActive.toggle()
-                    }
+                    category = .photo
                 } label: {
                     Text("Photos")
-                        .fontWeight(!isExActive ? .bold : .regular)
+                        .fontWeight(category == .photo ? .bold : .regular)
                 }
 
                 Spacer()
 
                 Button {
-                    if !isExActive {
-                        isExActive.toggle()
-                    }
+                    category = .exhibition
                 } label: {
                     Text("Exhibitions")
-                        .fontWeight(isExActive ? .bold : .regular)
+                        .fontWeight(category == .exhibition ? .bold : .regular)
                 }
             }
             .frame(width: 200)
 
-            isExActive ? AnyView(SearchExhibition()) : AnyView(LikePhoto())
+            category == .exhibition ? AnyView(SearchExhibition(exhibitions: likeVM.exhibitionLikes).onAppear {
+                likeVM.requestLikeExhibitions()
+            }) : AnyView(LikePhoto(likes: likeVM.photoLikes).onAppear {
+                likeVM.requestLikePhotos()
+            })
         }
         .padding(.top, 20)
 
