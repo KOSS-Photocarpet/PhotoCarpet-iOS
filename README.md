@@ -1,5 +1,5 @@
 # PhotoCarpet-iOS
-branch update
+
 <details>
   <summary>iOS 코딩 컨벤션 [접기/펼치기]</summary>
 
