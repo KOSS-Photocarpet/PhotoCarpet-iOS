@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct BuyModal: View {
-    @Binding var price: String
+    var price: String
     @Binding var isActive: Bool
     @Binding var showCompleteAlert: Bool
     @Binding var showFailModal: Bool
-    
+
     var body: some View {
         HStack(spacing: 20) {
             VStack {
@@ -23,7 +23,7 @@ struct BuyModal: View {
                 Text(price + "P")
                     .font(.system(size: 25))
             }
-            
+
             Button {
                 if let price = Int(price) {
                     withAnimation(.easeInOut(duration: 0.5)) {
@@ -61,7 +61,7 @@ struct BuyModal: View {
 struct BuyModal_Previews: PreviewProvider {
     static var previews: some View {
         BuyModal(
-            price: .constant("300"),
+            price: "300",
             isActive: .constant(true),
             showCompleteAlert: .constant(false),
             showFailModal: .constant(false)

@@ -20,8 +20,9 @@ struct Response: Codable {
         let likeCount: Int?
         let exhibitionDate: Date?
         let thumbUrl: String?
-        let user: User
+        let user: User?
         let moodContents: [String]?
+        var liked: Bool?
     }
 
     struct Artist: Codable {

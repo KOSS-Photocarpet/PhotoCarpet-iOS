@@ -5,13 +5,13 @@
 //  Created by 최정민 on 2023/02/22.
 //
 
-import SwiftUI
 import PhotosUI
+import SwiftUI
 
 struct ImageSelector: View {
     @State private var selectedItem: PhotosPickerItem?
-    @Binding var photo: ExhibitionData.Photo
-    
+    @Binding var photo: ExhibitionInputData.Photo
+
     var body: some View {
         ZStack {
             VStack {
@@ -24,7 +24,7 @@ struct ImageSelector: View {
                             .cornerRadius(10)
                     } else {
                         RoundedRectangle(cornerRadius: 10)
-                            .foregroundColor(Color(0xf5f5f5))
+                            .foregroundColor(Color(0xF5F5F5))
                     }
                     PhotosPicker(selection: $selectedItem, matching: .images) {
                         if photo.photo == nil {
@@ -39,6 +39,7 @@ struct ImageSelector: View {
                         Task {
                             if let data = try? await newItem?.loadTransferable(type: Data.self) {
                                 if let uiImage = UIImage(data: data) {
+                                    photo.data = uiImage
                                     photo.photo = Image(uiImage: uiImage)
                                     return
                                 }
@@ -47,7 +48,7 @@ struct ImageSelector: View {
                     }
                 }
                 .frame(width: 94, height: 179)
-                
+
                 TextField("가격을 입력해주세요.", text: $photo.price)
                     .font(.custom("system", size: 10, relativeTo: .footnote))
                     .keyboardType(.decimalPad)
@@ -58,11 +59,5 @@ struct ImageSelector: View {
             }
             .frame(width: 94)
         }
-    }
-}
-
-struct ImageSelector_Previews: PreviewProvider {
-    static var previews: some View {
-        ImageSelector(photo: .constant(ExhibitionData.Photo()))
     }
 }

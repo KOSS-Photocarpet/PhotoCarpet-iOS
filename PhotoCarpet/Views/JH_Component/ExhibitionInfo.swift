@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct ExhibitionInfo: View {
-    var exhibitionTitle: String
-    
-    init(exhibitionTitle: String = "전시회1") {
-        self.exhibitionTitle = exhibitionTitle
+    var exhibition: Response.Exhibition
+
+    init(_ exhibition: Response.Exhibition) {
+        self.exhibition = exhibition
     }
-    
+
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(exhibitionTitle)
+            Text(exhibition.title!)
                 .foregroundColor(.white)
                 .font(.system(size: 15, weight: .bold))
-            
-            ArtistInfo()
+
+            ArtistInfo(exhibition)
         } // VStack
     }
 }
 
 struct ExhibitionInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ExhibitionInfo()
+//        ExhibitionInfo()
+        EmptyView()
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainHome: View {
     var body: some View {
-        NavigationStack {
+        NavigationView {
             VStack(spacing: 0) {
                 CustomNavBarView()
 
@@ -22,7 +22,8 @@ struct MainHome: View {
                         .listRowInsets(EdgeInsets())
 
                     NavigationLink {
-                        EnrollView(isEdit: .constant(false))
+                        EnrollView(isEdit: false)
+                            .environmentObject(ExhibitionInputData())
                     } label: {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
@@ -38,13 +39,7 @@ struct MainHome: View {
             .toolbar(.hidden, for: .navigationBar)
             .background(Gradient(colors: [.black, .white]))
         } // NavView
-    }
-}
-
-struct MainHome_Previews: PreviewProvider {
-    static var previews: some View {
-        MainHome()
-            .environmentObject(ExhibitionData())
+        .navigationViewStyle(.stack)
     }
 }
 

@@ -8,23 +8,43 @@
 import SwiftUI
 
 struct ArtistInfo: View {
-    var artistProfileUrl: String
-    var artistName: String
-    
-    init(artistProfileUrl: String = "artist", artistName: String = "아티스트 이름") {
-        self.artistProfileUrl = artistProfileUrl
-        self.artistName = artistName
+    var exhibition: Response.Exhibition
+
+    init(_ exhibition: Response.Exhibition) {
+        self.exhibition = exhibition
     }
-    
+
     var body: some View {
         HStack {
-            Image("artist")
-                .renderingMode(.original)
-                .resizable()
-                .frame(width: 30, height: 30)
-                .clipShape(Circle())
+            if exhibition.user?.profilUrl != nil {
+                AsyncImage(url: URL(string: exhibition.user?.profilUrl ?? "https://randomuser.me/api/portraits/lego/1.jpg")) { phase in
+                    if let image = phase.image {
+                        image
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                    } else if phase.error != nil {
+                        Image(systemName: "person.circle.fill")
+                            .renderingMode(.original)
+                            .resizable()
+                            .frame(width: 30, height: 30)
+                            .clipShape(Circle())
+                    } else {
+                        ProgressView()
+                    }
+                }
+            } else {
+                Image(systemName: "person.circle.fill")
+                    .renderingMode(.original)
+                    .resizable()
+                    .frame(width: 30, height: 30)
+                    .clipShape(Circle())
+                    .foregroundColor(.black)
+                    .backgroundStyle(.white)
+            }
 
-            Text("아트스트 이름")
+            Text(exhibition.user?.nickName ?? "unknown")
                 .foregroundColor(.white)
                 .font(.system(size: 12, weight: .bold))
         } // HStack
@@ -33,6 +53,7 @@ struct ArtistInfo: View {
 
 struct ArtistInfo_Previews: PreviewProvider {
     static var previews: some View {
-        ArtistInfo()
+//        ArtistInfo()
+        EmptyView()
     }
 }
